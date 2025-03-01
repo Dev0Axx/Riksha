@@ -1,101 +1,145 @@
-import Image from "next/image";
+import Categories from '@/components/shared/headerComponents/Categories/Categories';
+import { Container } from '@/components/shared/container';
+import Banner from './components/Banner';
+import Features from './components/Features';
+import Promotion from './components/Promotion';
+import AboutUs from './components/AboutUs';
+import CardsContainer from '@/components/shared/cardsContainer';
+
+const ms = [
+  {
+    category: 'Pizza',
+    id: '1',
+    products: [
+      {
+        photo: '/roll_test.png',
+        name: 'Margherita',
+        ingredients: 'Tomato sauce, mozzarella, basil, olive oil',
+        price: '550',
+      },
+      {
+        photo: 'roll_test.png',
+        name: 'Pepperoni',
+        ingredients: 'Tomato sauce, mozzarella, pepperoni',
+        price: '650',
+      },
+      {
+        photo: 'roll_test.png',
+        name: 'Hawaiian',
+        ingredients: 'Tomato sauce, mozzarella, ham, pineapple',
+        price: '600',
+      },
+      {
+        photo: 'roll_test.png',
+        name: 'Four Cheese',
+        ingredients: 'Creamy sauce, mozzarella, gorgonzola, parmesan, emmental',
+        price: '750',
+      },
+      {
+        photo: 'roll_test.png',
+        name: "Meat Lover's",
+        ingredients: 'Tomato sauce, mozzarella, sausage, ham, bacon, pepperoni',
+        price: '800',
+      },
+      {
+        photo: 'roll_test.png',
+        name: 'Vegetarian',
+        ingredients:
+          'Tomato sauce, mozzarella, mushrooms, peppers, onion, olives, tomatoes',
+        price: '700',
+      },
+      {
+        photo: 'roll_test.png',
+        name: 'Mushroom',
+        ingredients:
+          'Creamy sauce, mozzarella, mushrooms, onion, garlic, herbs',
+        price: '680',
+      },
+      {
+        photo: 'roll_test.png',
+        name: 'BBQ',
+        ingredients: 'BBQ sauce, mozzarella, chicken, onion, peppers, corn',
+        price: '780',
+      },
+      {
+        photo: 'roll_test.png',
+        name: 'Neapolitan',
+        ingredients:
+          'Tomato sauce, mozzarella, anchovies, capers, olives, oregano',
+        price: '720',
+      },
+      {
+        photo: 'roll_test.png',
+        name: 'Rustic',
+        ingredients:
+          'Tomato sauce, mozzarella, potatoes, mushrooms, bacon, rosemary',
+        price: '850',
+      },
+    ],
+  },
+  {
+    category: 'Roll',
+    id: '2',
+    products: [
+      {
+        photo: 'roll_test.png',
+        name: 'California Roll',
+        ingredients: 'Crab stick, avocado, cucumber, rice, nori, sesame seeds',
+        price: '450',
+      },
+      {
+        photo: 'roll_test.png',
+        name: 'Philadelphia Roll',
+        ingredients: 'Salmon, cream cheese, cucumber, rice, nori',
+        price: '500',
+      },
+      {
+        photo: 'roll_test.png',
+        name: 'Spicy Tuna Roll',
+        ingredients: 'Tuna, spicy mayo, cucumber, rice, nori',
+        price: '550',
+      },
+      {
+        photo: 'roll_test.png',
+        name: 'Dragon Roll',
+        ingredients: 'Eel, avocado, cucumber, rice, nori, unagi sauce',
+        price: '600',
+      },
+      {
+        photo: 'roll_test.png',
+        name: 'Vegetable Roll',
+        ingredients: 'Avocado, cucumber, carrot, bell pepper, rice, nori',
+        price: '400',
+      },
+    ],
+  },
+];
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <Container>
+        <h1 className="xl:text-4xl font-medium mb-6 mt-16 ml-4 text-2xl">
+          Категории
+        </h1>
+      </Container>
+      <Categories />
+      <Banner />
+      <Features />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+      <div className="bg-[rgb(251,251,251)] px-4">
+        {ms.map((category) => (
+          <CardsContainer
+            key={category.category}
+            title={category.category}
+            id={category.id}
+            products={category.products}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        ))}
+      </div>
+
+      <Promotion />
+      <AboutUs />
+    </>
   );
 }
