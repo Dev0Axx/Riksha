@@ -1,10 +1,15 @@
+'use client';
 import Link from 'next/link';
 import { BsTelephone } from 'react-icons/bs';
 import { Button } from '../../../ui/button';
 import { CgProfile } from 'react-icons/cg';
 import NavigationList from '../NavigationList/NavigationList';
+import { useRef } from 'react';
+import Auth from '../../auth';
 
 export default function Navigation() {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+
   return (
     <div className="flex gap-8 flex-col xl:flex-row xl:gap-20 ">
       <nav className="hidden sm:block">
@@ -40,12 +45,17 @@ export default function Navigation() {
           <Button
             variant="outline"
             className="flex items-center sm:gap-3 gap-1"
+            onClick={() => {
+              dialogRef.current?.showModal();
+            }}
           >
-            <CgProfile size={15} /> Войти
+            <CgProfile size={15} />
+            <p>Войти</p>
           </Button>
           <NavigationList className="block sm:hidden"></NavigationList>
         </div>
       </div>
+      <Auth dialogRef={dialogRef} />
     </div>
   );
 }
