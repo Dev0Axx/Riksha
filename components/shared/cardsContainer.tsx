@@ -6,20 +6,26 @@ import { useIntersectionObserver } from '@reactuses/core';
 import { useRef } from 'react';
 import { useCategoryStore } from '@/store/category';
 
-type Product = {
-  photo: string;
+interface Goods {
+  id: number;
   name: string;
-  ingredients: string;
-  price: string;
-};
+  price: number;
+  img_url: string;
+  description: string;
+}
 
-type Props = {
-  title: string;
-  products: Product[];
-  id: string;
-};
+interface Categories {
+  goods: Goods[];
+  id: number;
+  name: string;
+  sort_order: number;
+}
 
-export default function CardsContainer({ title, products, id }: Props) {
+interface CardsContainerProps {
+  category: Categories;
+}
+
+export default function CardsContainer({ category }: CardsContainerProps) {
   const setActiveCategoryId = useCategoryStore((state) => state.setActiveId);
   const intersectionRef = useRef(null);
 
@@ -27,19 +33,23 @@ export default function CardsContainer({ title, products, id }: Props) {
     intersectionRef,
     (entry) => {
       if (entry[0].isIntersecting) {
-        setActiveCategoryId(id);
+        setActiveCategoryId(category.id.toString());
       }
     },
-    { threshold: 0.4, root: null, rootMargin: '100px' },
+    { threshold: 1, root: null, rootMargin: '100px' },
   );
 
   return (
     <Container className="sm:px-4">
-      <section className="mt-20 py-4" id={id} ref={intersectionRef}>
-        <p className="text-4xl font-bold py-8">{title}</p>
+      <section
+        className="py-4"
+        id={category.id.toString()}
+        ref={intersectionRef}
+      >
+        <p className="text-4xl font-bold py-8">{category.name}</p>
         <div className="flex flex-wrap sm:gap-[2%] max-[640px]:justify-between">
-          {products.map((product) => (
-            <Card key={product.name} product={product}></Card>
+          {category.goods.map((good) => (
+            <Card key={good.id} good={good}></Card>
           ))}
         </div>
       </section>

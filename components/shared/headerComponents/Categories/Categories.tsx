@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import Image from 'next/image'; // Обязательно для Next.js
+import Image from 'next/image';
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { RiShoppingBasketFill } from 'react-icons/ri';
@@ -20,6 +20,7 @@ import Sale from '../../../../app/assets/categories/sale.svg';
 import { Container } from '../../container';
 import { useCategoryStore } from '@/store/category';
 import Link from 'next/link';
+import { useBasket } from '@/store/basket';
 
 const categories = [
   { name: 'Пицца', image: Pizza },
@@ -36,6 +37,8 @@ const categories = [
 
 export default function Categories() {
   const categoryActiveId = useCategoryStore((state) => state.activeId);
+  const totalItems = useBasket((state) => state.totalItems());
+  const totalPrice = useBasket((state) => state.totalPrice());
 
   return (
     <Container className="sticky top-5 z-1 px-4">
@@ -62,11 +65,11 @@ export default function Categories() {
           </Link>
         ))}
         <Button className="group relative hidden xl:flex">
-          <b>1000 ₽</b>
+          <b>{totalPrice} ₽</b>
           <span className="h-full w-[1px] bg-white/30 mx-3" />
           <div className="flex items-center gap-1 transition duration-300 group-hover:opacity-0">
             <RiShoppingBasketFill size={15} />
-            <b>3</b>
+            <b>{totalItems}</b>
           </div>
           <LiaLongArrowAltRightSolid
             className="group-hover:opacity-100 transition duration-300 absolute right-4 opacity-0 "

@@ -4,11 +4,37 @@ import { BsTelephone } from 'react-icons/bs';
 import { Button } from '../../../ui/button';
 import { CgProfile } from 'react-icons/cg';
 import NavigationList from '../NavigationList/NavigationList';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Auth from '../../auth';
+import { useEffect } from 'react';
+import { getUserData } from '@/dataBase/auth';
+import { useUserState } from '@/store/user';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function Navigation() {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const username = useUserState((state) => state.username);
+  const setUser = useUserState((state) => state.setUser);
+  const [isLoading, setIsLoading] = useState(true);
+
+  async function getUser() {
+    try {
+      if (localStorage.getItem('sb-ijhofcukmojbsfgdhsis-auth-token')) {
+        const res = await getUserData();
+        if (res) {
+          setUser(res[1].username, res[0].user_metadata.email);
+        }
+      }
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <div className="flex gap-8 flex-col xl:flex-row xl:gap-20 ">
@@ -42,16 +68,22 @@ export default function Navigation() {
           </div>
         </div>
         <div className="flex items-center sm:gap-3 gap-4">
-          <Button
-            variant="outline"
-            className="flex items-center sm:gap-3 gap-1"
-            onClick={() => {
-              dialogRef.current?.showModal();
-            }}
-          >
-            <CgProfile size={15} />
-            <p>Войти</p>
-          </Button>
+          {isLoading ? (
+            <Skeleton className="w-[113px] h-[40px]" />
+          ) : (
+            <Button
+              variant="outline"
+              className="flex items-center sm:gap-3 gap-1"
+              onClick={() => {
+                if (username === '') {
+                  dialogRef.current?.showModal();
+                }
+              }}
+            >
+              <CgProfile size={15} />
+              <p>{username === '' ? 'Войти' : username}</p>
+            </Button>
+          )}
           <NavigationList className="block sm:hidden"></NavigationList>
         </div>
       </div>

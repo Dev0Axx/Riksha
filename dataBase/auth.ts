@@ -26,8 +26,6 @@ export const signupUser = async (
       return error.message;
     }
   }
-
-  return { user, username };
 };
 
 export const loginUser = async (email: string, password: string) => {
@@ -53,5 +51,29 @@ export const loginUser = async (email: string, password: string) => {
       return error.message;
     }
     return { user, session, data };
+  }
+};
+
+// Функция для получения данных текущего пользователя
+export const getUserData = async () => {
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('user_id', user.id)
+      .single();
+
+    if (error) {
+      return error.message;
+    }
+
+    return [user, data];
+  } else {
+    return error?.message;
   }
 };

@@ -2,6 +2,8 @@
 
 import { Ref } from 'react';
 import { useStateAuth } from '@/store/auth';
+import Login from './authComponents/login';
+import Register from './authComponents/register';
 
 type Props = {
   dialogRef: Ref<HTMLDialogElement>;
@@ -9,40 +11,16 @@ type Props = {
 
 export default function Auth({ dialogRef }: Props) {
   const auth = useStateAuth((state) => state.active);
+  const changeAuth = useStateAuth((state) => state.setStateAuth);
 
   return (
-    <dialog
-      ref={dialogRef}
-      className="w-[500px] h-[300px] rounded-2xl m-auto p-4 border-primary"
-    >
-      <div className="flex items-center flex-col gap-4">
-        {auth ? (
-          <div>
-            <p className="text-2xl font-bold text-center">Вход</p>
-            <form>
-              <label className="block mb-2">Email:</label>
-            </form>
-          </div>
-        ) : (
-          <div>
-            <p className="text-2xl font-bold text-center">Регистрация</p>
-            <form className="[&>label]:border-black">
-              <label className="block mb-2">
-                Имя
-                <input type="text" className="border-black" />
-              </label>
-              <label className="block mb-2">
-                Почта
-                <input type="text" />
-              </label>
-              <label className="block mb-2">
-                Пароль
-                <input type="text" />
-              </label>
-            </form>
-          </div>
-        )}
-        <p className="text-[#0000FF] cursor-pointer transition duration-300 hover:scale-110">
+    <dialog ref={dialogRef} className="w-[500px] rounded-2xl m-auto p-4">
+      <div className="flex flex-col items-center">
+        {auth ? <Login /> : <Register />}
+        <p
+          className="text-blue-600 transition duration-200 hover:scale-105 cursor-pointer mt-2"
+          onClick={() => changeAuth(!auth)}
+        >
           {auth ? 'Зарегистрироваться' : 'Войти'}
         </p>
       </div>
