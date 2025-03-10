@@ -4,7 +4,8 @@ import { cn } from '@/lib/utils';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { signupUser } from '@/dataBase/auth';
-import { useState } from 'react';
+import { RefObject, useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface IRegister {
   username: string;
@@ -12,7 +13,11 @@ interface IRegister {
   password: string;
 }
 
-export default function Register() {
+type Props = {
+  dialogRef: RefObject<HTMLDialogElement | null>;
+};
+
+export default function Register({ dialogRef }: Props) {
   const {
     register,
     handleSubmit,
@@ -27,8 +32,12 @@ export default function Register() {
     try {
       const res = await signupUser(data.email, data.password, data.username);
       setError(false);
-      alert('На вашу почту отправлено письмо с подтверждением.');
-    } catch {
+      if (dialogRef.current) {
+        dialogRef.current.close();
+      }
+      toast.success('На вашу почту отправлено письмо с подтверждением.');
+    } catch (e) {
+      console.log(e);
       setError(true);
     }
   }

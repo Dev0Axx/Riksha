@@ -22,16 +22,15 @@ export default function Footer() {
             <Link href="">Доставка и оплата</Link>
             <Link href="">Контакты</Link>
           </nav>
-          <div className="text-right md:block hidden">
+          <address className="text-right md:block hidden">
             <p className="text-2xl">+7 (495) 617-14-24</p>
             <p>c 10:00 до 23:00</p>
-          </div>
+          </address>
         </div>
         <div className="flex justify-end">
           <p className=" max-[350px]:text-xs">© Рикша. Все права защищены.</p>
         </div>
       </Container>
-      ;
     </footer>
   );
 }

@@ -12,21 +12,19 @@ import { useUserState } from '@/store/user';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default function Navigation() {
-  const dialogRef = useRef<HTMLDialogElement>(null);
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
   const username = useUserState((state) => state.username);
   const setUser = useUserState((state) => state.setUser);
   const [isLoading, setIsLoading] = useState(true);
 
   async function getUser() {
     try {
-      if (localStorage.getItem('sb-ijhofcukmojbsfgdhsis-auth-token')) {
-        const res = await getUserData();
-        if (res) {
-          setUser(res[1].username, res[0].user_metadata.email);
-        }
+      const res = await getUserData();
+      console.log(res);
+      if (res) {
+        setUser(res[1].username, res[0].user_metadata.email);
       }
-    } catch (e) {
-      console.log(e);
+    } catch {
     } finally {
       setIsLoading(false);
     }

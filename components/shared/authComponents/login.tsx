@@ -3,13 +3,21 @@
 import { cn } from '@/lib/utils';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
+import { loginUser } from '@/dataBase/auth';
+import { RefObject, useState } from 'react';
+import { useUserState } from '@/store/user';
+import { toast } from 'react-toastify';
 
 interface ILogin {
   email: string;
   password: string;
 }
 
-export default function Register() {
+type Props = {
+  dialogRef: RefObject<HTMLDialogElement | null>;
+};
+
+export default function Login({ dialogRef }: Props) {
   const {
     register,
     handleSubmit,
@@ -18,8 +26,23 @@ export default function Register() {
     mode: 'onBlur',
   });
 
-  function request(data: ILogin) {
-    console.log(data);
+  const [error, setError] = useState(false);
+  const setUser = useUserState((state) => state.setUser);
+
+  async function request(data: ILogin) {
+    try {
+      const res = await loginUser(data.email, data.password);
+      if (res) {
+        setError(false);
+        setUser(res, data.email);
+        toast.success('Успешно!');
+        if (dialogRef.current) {
+          dialogRef.current.close();
+        }
+      }
+    } catch {
+      setError(true);
+    }
   }
 
   return (
@@ -81,6 +104,13 @@ export default function Register() {
           Войти
         </Button>
       </form>
+      <div>
+        {error && (
+          <p className="text-sm text-red-600 font-bold text-center">
+            Произошла ошибка, повторите попытку позже
+          </p>
+        )}
+      </div>
     </div>
   );
 }

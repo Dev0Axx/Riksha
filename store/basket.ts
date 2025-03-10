@@ -1,4 +1,3 @@
-// store/basket.ts
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -19,6 +18,7 @@ interface StateCategory {
   goods: BasketItem[];
   addGood: (good: Good) => void;
   delGood: (good: Good) => void;
+  removeGood: (good: Good) => void;
   totalItems: () => number;
   totalPrice: () => number;
 }
@@ -66,6 +66,10 @@ export const useBasket = create<StateCategory>()(
           }
           return { goods: state.goods };
         }),
+      removeGood: (good: Good) =>
+        set((state) => ({
+          goods: state.goods.filter((item) => item.good.id !== good.id),
+        })),
       totalItems: () =>
         get().goods.reduce((total, item) => total + item.quantity, 0),
       totalPrice: () =>

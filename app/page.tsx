@@ -1,4 +1,4 @@
-import Categories from '@/components/shared/headerComponents/Categories/Categories';
+import Categories from './components/Categories';
 import { Container } from '@/components/shared/container';
 import Banner from './components/Banner';
 import Features from './components/Features';

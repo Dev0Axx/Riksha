@@ -1,5 +1,6 @@
 import { Container } from '@/components/shared/container';
 import Image from 'next/image';
+
 import DeliverText from '../assets/advantages/deliver/text.svg';
 import DeliverImg from '../assets/advantages/deliver/ic.svg';
 import FreeText from '../assets/advantages/free/text.svg';
@@ -43,35 +44,41 @@ const advantagesData = [
 export default function Features() {
   return (
     <div className="relative">
+      {/* Фоновое изображение */}
       <Image
         src="/bg_clock.png"
-        alt=""
+        alt="Фоновое изображение"
         width={521}
         height={412}
-        className="absolute -bottom-70 left-0 -z-1 hidden md:block select-none"
-      ></Image>
+        className="absolute -bottom-70 left-0 -z-10 hidden md:block select-none"
+      />
+
+      {/* Контейнер для преимуществ */}
       <Container className="md:mt-48 mt-12 px-4">
         <div className="flex justify-between gap-4 flex-col sm:flex-row">
           {advantagesData.map((advantage) => (
             <div key={advantage.name} className="flex flex-col items-center">
+              {/* Блок с изображениями */}
               <div className="flex flex-col items-center ml-3 mr-1 h-[130px]">
                 <Image
                   src={advantage.text}
                   alt={advantage.name}
                   width={138}
                   height={59}
-                ></Image>
+                />
                 <Image
                   src={advantage.img}
                   alt={advantage.name}
                   width={0}
                   height={0}
                   className="w-max h-auto"
-                ></Image>
+                />
               </div>
+
+              {/* Текстовый блок */}
               <div className="text-center">
-                <b>{advantage.title}</b>
-                <p>{advantage.description}</p>
+                <b className="text-lg font-bold">{advantage.title}</b>
+                <p className="text-sm text-gray-600">{advantage.description}</p>
               </div>
             </div>
           ))}

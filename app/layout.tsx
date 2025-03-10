@@ -4,6 +4,8 @@ import './globals.css';
 import Header from '@/components/shared/header';
 import Footer from '@/components/shared/footer';
 import { cn } from '@/lib/utils';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const geistSans = Nunito({
   variable: '--font-nunito',
@@ -38,6 +40,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <ToastContainer />
       </body>
     </html>
   );

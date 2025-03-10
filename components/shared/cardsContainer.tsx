@@ -36,7 +36,7 @@ export default function CardsContainer({ category }: CardsContainerProps) {
         setActiveCategoryId(category.id.toString());
       }
     },
-    { threshold: 1, root: null, rootMargin: '100px' },
+    { threshold: 0.7, root: null, rootMargin: '100px' },
   );
 
   return (

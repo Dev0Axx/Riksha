@@ -5,6 +5,6 @@ interface StateAuth {
   setStateAuth: (active: boolean) => void;
 }
 export const useStateAuth = create<StateAuth>()((set) => ({
-  active: false,
+  active: true,
   setStateAuth: (active: boolean) => set({ active }),
 }));
