@@ -1,4 +1,4 @@
-'use client'; // Помечаем компонент Header как клиентский
+'use client';
 
 import Image from 'next/image';
 import { Container } from './container';

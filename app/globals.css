@@ -118,3 +118,19 @@
     @apply bg-background text-foreground;
   }
 }
+
+/*Стилизация ползунка для фильтрации цены*/
+.rc-slider-track {
+  background-color: hsl(var(--primary)) !important; /* Цвет трека */
+}
+.rc-slider-handle {
+  border-color: hsl(var(--primary)) !important; /* Цвет ручек */
+  background-color: black !important;
+}
+.rc-slider-rail {
+  background-color: hsl(var(--primary)); /* Цвет фоновой линии */
+}
+.rc-slider-handle:focus {
+  outline: none !important; /* Убираем обводку */
+  box-shadow: none !important; /* Убираем тень */
+}

@@ -4,8 +4,9 @@ import Banner from './components/Banner';
 import Features from './components/Features';
 import Promotion from './components/Promotion';
 import AboutUs from './components/AboutUs';
-import CardsContainer from '@/components/shared/cardsContainer';
 import { getGoods } from '@/dataBase/goods';
+import ButtonBasket from './components/ButtonBasket';
+import GoodsContainer from '@/components/shared/goodsContainer';
 
 interface Goods {
   id: number;
@@ -27,6 +28,8 @@ export default async function Home() {
 
   return (
     <>
+      {/* Кнопка корзины для устройств с меньшим экраном */}
+      <ButtonBasket />
       <Container>
         <h1 className="xl:text-4xl font-medium mb-6 mt-16 ml-4 text-2xl">
           Категории
@@ -36,11 +39,8 @@ export default async function Home() {
       <Banner />
       <Features />
 
-      <div className="bg-[rgb(251,251,251)] px-4 mt-8">
-        {res.map((category) => (
-          <CardsContainer key={category.id} category={category} />
-        ))}
-      </div>
+      {/* Категории товаров */}
+      <GoodsContainer categories={res} />
 
       <Promotion />
       <AboutUs />

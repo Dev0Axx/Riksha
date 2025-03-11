@@ -9,7 +9,7 @@ export default function Basket() {
   const { goods } = useBasket();
 
   return (
-    <Container className="p-4 flex justify-between xl:flex-row flex-col mt-18">
+    <Container className="p-4 flex justify-between xl:flex-row flex-col mt-18 gap-8">
       <div>
         <h2 className="text-4xl font-bold mb-8">Оформление заказа</h2>
         {goods.length === 0 ? (

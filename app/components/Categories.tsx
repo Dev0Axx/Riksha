@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { RiShoppingBasketFill } from 'react-icons/ri';
 import { LiaLongArrowAltRightSolid } from 'react-icons/lia';
@@ -40,6 +40,15 @@ export default function Categories() {
   const totalItems = useBasket((state) => state.totalItems());
   const totalPrice = useBasket((state) => state.totalPrice());
   const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <Container className="sticky top-5 z-10 px-4">
@@ -69,7 +78,7 @@ export default function Categories() {
 
         {/* Кнопка корзины */}
         <Button
-          className="group relative hidden xl:flex"
+          className="group relative xl:flex hidden"
           onClick={() => router.push('/basket')}
         >
           <b>{totalPrice} ₽</b>

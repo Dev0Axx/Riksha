@@ -1,20 +1,13 @@
 'use client';
 
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 import { useBasket } from '@/store/basket';
 import { useState } from 'react';
+import { Goods } from '@/interfaces';
 
-interface Goods {
-  id: number;
-  name: string;
-  price: number;
-  img_url: string;
-  description: string;
-}
-
-interface GoodProps {
+type GoodProps = {
   good: Goods;
-}
+};
 
 export default function Card({ good }: GoodProps) {
   const addGood = useBasket((state) => state.addGood);

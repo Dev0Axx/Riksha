@@ -1,6 +1,5 @@
 import { supabase } from './supabaseClient';
 
-// Функция для регистрации пользователя
 export const signupUser = async (
   email: string,
   password: string,
@@ -48,12 +47,10 @@ export const loginUser = async (email: string, password: string) => {
   }
 };
 
-// Функция для получения данных текущего пользователя
 export const getUserData = async () => {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-
   if (user) {
     const { data, error } = await supabase
       .from('profiles')
@@ -67,6 +64,14 @@ export const getUserData = async () => {
 
     return [user, data];
   } else {
+    throw new Error();
+  }
+};
+
+export const singOut = async () => {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
     throw new Error();
   }
 };

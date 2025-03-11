@@ -4,6 +4,7 @@ import { RefObject } from 'react';
 import { useStateAuth } from '@/store/auth';
 import Login from './authComponents/login';
 import Register from './authComponents/register';
+import { IoCloseOutline } from 'react-icons/io5';
 
 type Props = {
   dialogRef: RefObject<HTMLDialogElement | null>;
@@ -28,6 +29,15 @@ export default function Auth({ dialogRef }: Props) {
           {auth ? 'Зарегистрироваться' : 'Войти'}
         </p>
       </div>
+      <IoCloseOutline
+        size={30}
+        className="absolute top-2 right-2 cursor-pointer"
+        onClick={() => {
+          if (dialogRef.current) {
+            dialogRef.current.close();
+          }
+        }}
+      />
     </dialog>
   );
 }

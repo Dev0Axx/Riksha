@@ -36,7 +36,7 @@ const BannerImage = () => (
 
 // Компонент для бейджа
 const BannerBadge = () => (
-  <div className="absolute bg-primary rounded-full flex justify-center items-center font-bold text-amber-50 md:text-2xl md:w-42 md:h-42 w-28 h-28 md:-bottom-20 -bottom-12 left-10">
+  <div className="absolute bg-primary rounded-full md:flex justify-center items-center font-bold text-amber-50 w-28 h-28 -bottom-12 left-10 hidden">
     {BANNER_BADGE_TEXT}
   </div>
 );

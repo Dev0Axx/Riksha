@@ -27,9 +27,11 @@ export default function Register({ dialogRef }: Props) {
   });
 
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   async function request(data: IRegister) {
     try {
+      setLoading(true);
       const res = await signupUser(data.email, data.password, data.username);
       setError(false);
       if (dialogRef.current) {
@@ -39,7 +41,17 @@ export default function Register({ dialogRef }: Props) {
     } catch (e) {
       console.log(e);
       setError(true);
+    } finally {
+      setLoading(false);
     }
+  }
+
+  if (loading) {
+    return (
+      <div className="text-center min-h-[200px] mt-8">
+        <p>Загрузка...</p>
+      </div>
+    );
   }
 
   return (

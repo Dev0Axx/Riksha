@@ -10,6 +10,9 @@ import { useEffect } from 'react';
 import { getUserData } from '@/dataBase/auth';
 import { useUserState } from '@/store/user';
 import { Skeleton } from '@/components/ui/skeleton';
+import { IoMdExit } from 'react-icons/io';
+import { singOut } from '@/dataBase/auth';
+import { toast } from 'react-toastify';
 
 export default function Navigation() {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
@@ -20,7 +23,6 @@ export default function Navigation() {
   async function getUser() {
     try {
       const res = await getUserData();
-      console.log(res);
       if (res) {
         setUser(res[1].username, res[0].user_metadata.email);
       }
@@ -81,6 +83,17 @@ export default function Navigation() {
               <CgProfile size={15} />
               <p>{username === '' ? 'Войти' : username}</p>
             </Button>
+          )}
+          {username != '' && (
+            <IoMdExit
+              size={25}
+              className="cursor-pointer"
+              onClick={() => {
+                singOut();
+                setUser('', '');
+                toast.success('Вы вышли из аккаунта!');
+              }}
+            />
           )}
           <NavigationList className="block sm:hidden"></NavigationList>
         </div>

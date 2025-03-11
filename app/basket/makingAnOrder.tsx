@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useBasket } from '@/store/basket';
+
 enum PaymentMethod {
   cash = 'Наличными при получении',
   card = 'Картой при получении',
@@ -81,7 +82,7 @@ export default function Order() {
             placeholder="Ваше имя"
             className={cn(
               'h-8 px-2 py-5 bg-white w-[100%]',
-              errors?.name && 'border-3 border-red-600 rounded',
+              errors?.name && 'border-2 border-red-600 rounded',
             )}
             {...register('name', {
               required: true,
@@ -92,10 +93,11 @@ export default function Order() {
             placeholder="Телефон"
             className={cn(
               'h-8 px-2 py-5 bg-white w-[100%]',
-              errors?.phone && 'border-3 border-red-600 rounded',
+              errors?.phone && 'border-2 border-red-600 rounded',
             )}
             {...register('phone', {
               required: true,
+              pattern: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
             })}
           />
         </label>
@@ -108,7 +110,7 @@ export default function Order() {
             placeholder="Улица"
             className={cn(
               'h-8 px-2 py-5 bg-white w-[100%]',
-              errors?.street && 'border-3 border-red-600 rounded',
+              errors?.street && 'border-2 border-red-600 rounded',
             )}
             {...register('street', {
               required: true,
@@ -119,7 +121,7 @@ export default function Order() {
             placeholder="Дом"
             className={cn(
               'h-8 px-2 py-5 bg-white w-[100%]',
-              errors?.house && 'border-3 border-red-600 rounded',
+              errors?.house && 'border-2 border-red-600 rounded',
             )}
             {...register('house', {
               required: true,
@@ -132,7 +134,7 @@ export default function Order() {
             placeholder="Квартира"
             className={cn(
               'h-8 px-2 py-5 bg-white w-[100%]',
-              errors?.flat && 'border-3 border-red-600 rounded',
+              errors?.flat && 'border-2 border-red-600 rounded',
             )}
             {...register('flat', {
               required: true,
@@ -143,7 +145,7 @@ export default function Order() {
             placeholder="Подъезд/этаж/домофон"
             className={cn(
               'h-8 px-2 py-5 bg-white w-[100%]',
-              errors?.additionally && 'border-3 border-red-600 rounded',
+              errors?.additionally && 'border-2 border-red-600 rounded',
             )}
             {...register('additionally', {
               required: true,
@@ -186,14 +188,16 @@ export default function Order() {
           </label>
         </div>
         {paymentMethodValue === PaymentMethod.cash && (
-          <div className="mt-4 flex items-center gap-4">
-            <label htmlFor="changeAmount">Подготовить сдачу с:</label>
-            <input
-              type="number"
-              id="changeAmount"
-              className="h-8 px-2 py-5 bg-white w-32"
-              {...register('changeAmount')}
-            />
+          <div className="mt-4 flex sm:flex-row flex-col sm:items-center gap-4">
+            <div className="flex gap-2 items-center">
+              <label htmlFor="changeAmount">Подготовить сдачу с:</label>
+              <input
+                type="number"
+                id="changeAmount"
+                className="h-8 px-2 py-5 bg-white w-32"
+                {...register('changeAmount')}
+              />
+            </div>
             <label className="items-center gap-2 flex">
               <input
                 type="checkbox"
@@ -208,8 +212,8 @@ export default function Order() {
       <fieldset className="bg-[#F5F5F5] p-8">
         <h2 className="text-2xl font-bold mb-4">Последний шаг</h2>
         <hr className="mb-4" />
-        <div className="flex justify-between  ">
-          <div className="flex items-center gap-2 mb-4">
+        <div className="flex gap-4 flex-wrap">
+          <div className="flex items-center gap-2 mb-4 w-[100%] justify-between sm:w-max sm:justify-between">
             <span>Количество персон</span>
             <div className="flex items-center">
               <button
@@ -234,7 +238,7 @@ export default function Order() {
               />
             </div>
           </div>
-          <div className="flex items-center justify-between mb-4 gap-2">
+          <div className="flex items-center mb-4 gap-2 w-[100%] justify-between sm:w-max sm:justify-between">
             <span>Учебные палочки</span>
             <div className="flex items-center">
               <button
