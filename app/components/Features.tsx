@@ -48,9 +48,9 @@ export default function Features() {
       <Image
         src="/bg_clock.png"
         alt="Фоновое изображение"
-        width={521}
-        height={412}
-        className="absolute -bottom-70 left-0 -z-10 hidden md:block select-none"
+        width={330}
+        height={521}
+        className="absolute -bottom-10 left-0 -z-10 hidden md:block select-none"
       />
 
       {/* Контейнер для преимуществ */}

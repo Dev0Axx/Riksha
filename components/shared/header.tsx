@@ -11,7 +11,7 @@ function Logo() {
       src={'/logo.svg'}
       alt={'Logo'}
       width={134}
-      height={50}
+      height={156}
       className="xl:w-[134px] w-[98px] h-auto cursor-pointer"
       priority
     />

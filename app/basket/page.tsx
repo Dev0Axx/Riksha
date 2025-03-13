@@ -4,8 +4,9 @@ import { Container } from '@/components/shared/container';
 import { useBasket } from '@/store/basket';
 import BasketItem from './basketItem';
 import Order from './makingAnOrder';
+import dynamic from 'next/dynamic';
 
-export default function Basket() {
+const Basket = () => {
   const { goods } = useBasket();
 
   return (
@@ -27,4 +28,6 @@ export default function Basket() {
       </div>
     </Container>
   );
-}
+};
+
+export default dynamic(() => Promise.resolve(Basket), { ssr: false });

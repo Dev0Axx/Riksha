@@ -33,7 +33,11 @@ export default function CardsContainer({ category }: CardsContainerProps) {
             <p className="text-4xl font-bold py-8">{category.name}</p>
             <div className="flex flex-wrap sm:gap-[2%] max-[640px]:justify-between">
               {category.goods.map((good) => (
-                <Card key={good.id} good={good}></Card>
+                <Card
+                  key={good.id}
+                  good={good}
+                  categoryName={category.name}
+                ></Card>
               ))}
             </div>
           </section>

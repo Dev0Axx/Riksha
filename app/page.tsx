@@ -7,29 +7,17 @@ import AboutUs from './components/AboutUs';
 import { getGoods } from '@/dataBase/goods';
 import ButtonBasket from './components/ButtonBasket';
 import GoodsContainer from '@/components/shared/goodsContainer';
-
-interface Goods {
-  id: number;
-  name: string;
-  price: number;
-  img_url: string;
-  description: string;
-}
-
-interface Categories {
-  goods: Goods[];
-  id: number;
-  name: string;
-  sort_order: number;
-}
+import { Categories as ICategories } from '@/interfaces';
 
 export default async function Home() {
-  const res: Categories[] = await getGoods();
+  const res: ICategories[] = await getGoods();
 
   return (
     <>
       {/* Кнопка корзины для устройств с меньшим экраном */}
-      <ButtonBasket />
+      <ButtonBasket
+        classes={'xl:hidden sticky top-[90%] z-10 flex justify-end mr-4'}
+      />
       <Container>
         <h1 className="xl:text-4xl font-medium mb-6 mt-16 ml-4 text-2xl">
           Категории

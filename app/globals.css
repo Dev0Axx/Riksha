@@ -134,3 +134,20 @@
   outline: none !important; /* Убираем обводку */
   box-shadow: none !important; /* Убираем тень */
 }
+
+.descriptionList {
+  animation: dropListOpacity 2s ease-out forwards;
+}
+
+@keyframes dropListOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}

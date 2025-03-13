@@ -25,7 +25,7 @@ export default function BasketItem({ item }: BasketItemProps) {
             alt={item.good.name}
             width={80}
             height={80}
-            className="rounded-md max-[768px]:w-[120px] max-[768px]:h-[120px]"
+            className="rounded-md max-[768px]:w-[120px] h-auto"
           />
         )}
         <div>

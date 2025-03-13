@@ -12,3 +12,10 @@ export interface Categories {
   name: string;
   sort_order: number;
 }
+
+export interface Additionally {
+  id: number;
+  name: string;
+  price: number;
+  img_url: string;
+}

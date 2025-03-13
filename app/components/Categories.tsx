@@ -2,7 +2,6 @@
 
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { RiShoppingBasketFill } from 'react-icons/ri';
 import { LiaLongArrowAltRightSolid } from 'react-icons/lia';
@@ -11,6 +10,7 @@ import { useCategoryStore } from '@/store/category';
 import Link from 'next/link';
 import { useBasket } from '@/store/basket';
 import { useRouter } from 'next/navigation';
+import ButtonBasket from './ButtonBasket';
 
 import Pizza from '@/app/assets/categories/pizza.svg';
 import Sushi from '@/app/assets/categories/sushi.svg';
@@ -40,16 +40,6 @@ export default function Categories() {
   const totalItems = useBasket((state) => state.totalItems());
   const totalPrice = useBasket((state) => state.totalPrice());
   const router = useRouter();
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return null;
-  }
-
   return (
     <Container className="sticky top-5 z-10 px-4">
       <div className="flex items-center justify-between gap-1 bg-[#F5F5F5] rounded-lg p-4 overflow-auto">
@@ -75,23 +65,7 @@ export default function Categories() {
             </div>
           </Link>
         ))}
-
-        {/* Кнопка корзины */}
-        <Button
-          className="group relative xl:flex hidden"
-          onClick={() => router.push('/basket')}
-        >
-          <b>{totalPrice} ₽</b>
-          <span className="h-full w-[1px] bg-white/30 mx-3" />
-          <div className="flex items-center gap-1 transition duration-300 group-hover:opacity-0">
-            <RiShoppingBasketFill size={15} />
-            <b>{totalItems}</b>
-          </div>
-          <LiaLongArrowAltRightSolid
-            className="group-hover:opacity-100 transition duration-300 absolute right-4 opacity-0"
-            size={25}
-          />
-        </Button>
+        <ButtonBasket classes="xl:flex hidden" />
       </div>
     </Container>
   );

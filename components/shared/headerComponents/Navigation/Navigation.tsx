@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import Link from 'next/link';
 import { BsTelephone } from 'react-icons/bs';
@@ -16,8 +17,10 @@ import { toast } from 'react-toastify';
 
 export default function Navigation() {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
+
   const username = useUserState((state) => state.username);
   const setUser = useUserState((state) => state.setUser);
+
   const [isLoading, setIsLoading] = useState(true);
 
   async function getUser() {
