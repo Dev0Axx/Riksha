@@ -1,13 +1,15 @@
-export interface Goods {
+export interface Good {
   id: number;
   name: string;
   price: number;
   img_url: string;
   description: string;
+  sizes?: string[];
+  additionally?: Additionally[];
 }
 
 export interface Categories {
-  goods: Goods[];
+  goods: Good[];
   id: number;
   name: string;
   sort_order: number;

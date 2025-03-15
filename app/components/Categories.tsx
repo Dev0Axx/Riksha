@@ -2,14 +2,9 @@
 
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { RiShoppingBasketFill } from 'react-icons/ri';
-import { LiaLongArrowAltRightSolid } from 'react-icons/lia';
 import { Container } from '@/components/shared/container';
 import { useCategoryStore } from '@/store/category';
 import Link from 'next/link';
-import { useBasket } from '@/store/basket';
-import { useRouter } from 'next/navigation';
 import ButtonBasket from './ButtonBasket';
 
 import Pizza from '@/app/assets/categories/pizza.svg';
@@ -37,9 +32,7 @@ const categories = [
 
 export default function Categories() {
   const categoryActiveId = useCategoryStore((state) => state.activeId);
-  const totalItems = useBasket((state) => state.totalItems());
-  const totalPrice = useBasket((state) => state.totalPrice());
-  const router = useRouter();
+
   return (
     <Container className="sticky top-5 z-10 px-4">
       <div className="flex items-center justify-between gap-1 bg-[#F5F5F5] rounded-lg p-4 overflow-auto">

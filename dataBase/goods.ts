@@ -14,7 +14,8 @@ export const getGoods = async (): Promise<Categories[]> => {
         name,
         img_url,
         description,
-        price
+        price,
+        sizes
       )
     `,
     )

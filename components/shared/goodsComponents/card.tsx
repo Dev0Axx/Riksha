@@ -1,27 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import { Button } from '../../ui/button';
-import { useBasket } from '@/store/basket';
 import { useRef, useState } from 'react';
-import { Goods } from '@/interfaces';
+import { Good } from '@/interfaces';
 import CardDialog from './cardDialog';
 import { getAdditionally } from '@/dataBase/goods';
 import { Additionally } from '@/interfaces';
+import AddGoodButton from './addGoodButton';
 
 type GoodProps = {
-  good: Goods;
+  good: Good;
   categoryName: string;
 };
 
 export default function Card({ good, categoryName }: GoodProps) {
-  const addGood = useBasket((state) => state.addGood);
-  const delGood = useBasket((state) => state.delGood);
-  const basketItems = useBasket((state) => state.goods);
-  const [showQuantity, setShowQuantity] = useState(false);
   const [showDescription, setShowDescription] = useState(false);
-  const basketItem = basketItems.find((item) => item.good.id === good.id);
-  const quantity = basketItem ? basketItem.quantity : 0;
 
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
@@ -33,24 +26,6 @@ export default function Card({ good, categoryName }: GoodProps) {
   const additionally = async () => {
     const res = await getAdditionally(categoryName);
     setAdditionallyItems(res);
-  };
-
-  const handleAddClick = () => {
-    addGood(good);
-    setShowQuantity(true);
-  };
-
-  const handleIncrementClick = () => {
-    addGood(good);
-  };
-
-  const handleDecrementClick = () => {
-    if (quantity > 1) {
-      delGood(good);
-    } else {
-      delGood(good);
-      setShowQuantity(false);
-    }
   };
 
   return (
@@ -89,31 +64,7 @@ export default function Card({ good, categoryName }: GoodProps) {
           <p className="descriptionList text-sm">{good.description}</p>
         )}
         <b className="sm:text-2xl">{good.price} ₽</b>
-
-        {showQuantity || quantity > 0 ? (
-          <div className="flex items-center space-x-2">
-            <button
-              onClick={handleDecrementClick}
-              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full cursor-pointer"
-            >
-              -
-            </button>
-            <span>{quantity}</span>
-            <button
-              onClick={handleIncrementClick}
-              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full cursor-pointer"
-            >
-              +
-            </button>
-          </div>
-        ) : (
-          <Button
-            className="bg-[url('/bt_bg.svg')] sm:w-[60%] w-[100%] rounded"
-            onClick={handleAddClick}
-          >
-            Заказать
-          </Button>
-        )}
+        <AddGoodButton good={good} classes="sm:w-[60%] w-[100%]" />
       </div>
       <CardDialog
         dialogRef={dialogRef}

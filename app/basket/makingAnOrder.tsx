@@ -159,6 +159,7 @@ export default function Order() {
           <label className="flex gap-4 items-center">
             <input
               type="radio"
+              className="cursor-pointer"
               value={PaymentMethod.cash}
               {...register('paymentMethod', {
                 required: true,
@@ -169,6 +170,7 @@ export default function Order() {
           <label className="flex gap-4 items-center">
             <input
               type="radio"
+              className="cursor-pointer"
               value={PaymentMethod.card}
               {...register('paymentMethod', {
                 required: true,
@@ -179,6 +181,7 @@ export default function Order() {
           <label className="flex gap-4 items-center">
             <input
               type="radio"
+              className="cursor-pointer"
               value={PaymentMethod.online}
               {...register('paymentMethod', {
                 required: true,
@@ -201,6 +204,7 @@ export default function Order() {
             <label className="items-center gap-2 flex">
               <input
                 type="checkbox"
+                className="cursor-pointer"
                 onChange={() => setIsChangeNeeded(!isChangeNeeded)}
               />
               Без сдачи
@@ -219,7 +223,7 @@ export default function Order() {
               <button
                 type="button"
                 onClick={decreasePersonCount}
-                className="px-3 py-1 bg-gray-200 rounded-l"
+                className="px-3 py-1 bg-gray-200 rounded-l cursor-pointer"
               >
                 -
               </button>
@@ -227,7 +231,7 @@ export default function Order() {
               <button
                 type="button"
                 onClick={increasePersonCount}
-                className="px-3 py-1 bg-gray-200 rounded-r"
+                className="px-3 py-1 bg-gray-200 rounded-r cursor-pointer"
               >
                 +
               </button>
@@ -244,7 +248,7 @@ export default function Order() {
               <button
                 type="button"
                 onClick={decreaseSticksCount}
-                className="px-3 py-1 bg-gray-200 rounded-l"
+                className="px-3 py-1 bg-gray-200 rounded-l cursor-pointer"
               >
                 -
               </button>
@@ -252,7 +256,7 @@ export default function Order() {
               <button
                 type="button"
                 onClick={increaseSticksCount}
-                className="px-3 py-1 bg-gray-200 rounded-r"
+                className="px-3 py-1 bg-gray-200 rounded-r cursor-pointer"
               >
                 +
               </button>

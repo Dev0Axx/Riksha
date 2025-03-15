@@ -2,11 +2,11 @@
 'use client';
 import { useBasket } from '@/store/basket';
 import { FaRegTrashCan } from 'react-icons/fa6';
-import { Goods } from '@/interfaces';
+import { Good } from '@/interfaces';
 
 type BasketItemProps = {
   item: {
-    good: Goods;
+    good: Good;
     quantity: number;
   };
 };
@@ -18,12 +18,12 @@ export default function BasketItem({ item }: BasketItemProps) {
 
   return (
     <div className="flex flex-col md:flex-row md:items-center gap-2 justify-between py-4 border-b border-gray-200">
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center gap-4 max-w-[65%]">
         {item.good.img_url && (
           <img
             src={item.good.img_url}
             alt={item.good.name}
-            width={80}
+            width={200}
             height={80}
             className="rounded-md max-[768px]:w-[120px] h-auto"
           />
@@ -37,7 +37,7 @@ export default function BasketItem({ item }: BasketItemProps) {
         <div className="flex items-center border border-gray-300 rounded-md">
           <button
             onClick={() => {
-              delGood(item.good);
+              delGood(item.good.id);
             }}
             className="px-3 py-2 cursor-pointer"
             aria-label="Decrease quantity"
@@ -56,12 +56,12 @@ export default function BasketItem({ item }: BasketItemProps) {
           </button>
         </div>
         <div className="flex gap-2">
-          <span className="font-medium">
+          <span className="font-medium text-nowrap">
             {item.good.price * item.quantity} ₽
           </span>
           <button
             onClick={() => {
-              removeGood(item.good);
+              removeGood(item.good.id);
             }}
             className="text-red-500 hover:text-red-700 focus:outline-none"
             aria-label="Remove item"
