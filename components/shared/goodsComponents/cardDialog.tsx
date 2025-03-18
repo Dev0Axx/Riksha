@@ -1,12 +1,12 @@
 'use client';
 
 /* eslint-disable @next/next/no-img-element */
-import { RefObject, useState } from 'react';
+import { RefObject } from 'react';
 import { Good, Additionally as IAdditionally } from '@/interfaces';
 import { IoCloseOutline } from 'react-icons/io5';
 import Additionally from './additionally';
-import { cn } from '@/lib/utils';
-import AddGoodButton from './addGoodButton';
+import GoodSize from './goodSize';
+import { useBasket } from '@/store/basket';
 
 type Props = {
   good: Good;
@@ -19,7 +19,12 @@ export default function CardDialog({
   good,
   additionallyItems,
 }: Props) {
-  const [selectedSize, setSelectedSize] = useState<string>('');
+  const { addGood } = useBasket();
+
+  function addGoodToBasket(good: Good, additionally: IAdditionally[]) {
+    addGood(good, additionally);
+  }
+
   return (
     <dialog
       ref={dialogRef}
@@ -38,34 +43,16 @@ export default function CardDialog({
             <h1 className="text-4xl font-bold">{good.name}</h1>
             <p className="text-sm opacity-50 mt-2">{good.description}</p>
           </div>
-          {good.sizes && good.sizes.length > 1 ? (
-            <div className="mt-4 flex gap-1 bg-gray-200 rounded-4xl p-1 w-max">
-              {good.sizes.map((size) => (
-                <button
-                  key={size}
-                  onClick={() => setSelectedSize(size)}
-                  className={cn(
-                    'sm:px-16 px-6 py-2 rounded-4xl transition-all duration-300 cursor-pointer sm:text-base text-[12px] outline-none',
-                    selectedSize === size && 'bg-white',
-                  )}
-                >
-                  {size}
-                </button>
-              ))}
-            </div>
-          ) : null}
-          {good.sizes && good.sizes.length === 1 ? (
-            <div>
-              <p className="text-sm opacity-50">Размер: {good.sizes[0]}</p>
-            </div>
-          ) : null}
-          <div>
-            <Additionally additionallyItems={additionallyItems} good={good} />
-          </div>
-          <div className="mt-4">
-            <AddGoodButton good={good} classes="w-[100%]" />
-          </div>
+          <GoodSize good={good} />
+          <Additionally
+            additionallyItems={additionallyItems}
+            good={good}
+            addGoodToBasket={addGoodToBasket}
+            dialogRef={dialogRef}
+          />
         </div>
+
+        {/*Крестик выхода*/}
         <IoCloseOutline
           size={30}
           className="absolute right-1 top-1 cursor-pointer"

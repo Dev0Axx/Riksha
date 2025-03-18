@@ -32,7 +32,7 @@ const categories = [
 
 export default function Categories() {
   const categoryActiveId = useCategoryStore((state) => state.activeId);
-
+  console.log(categoryActiveId);
   return (
     <Container className="sticky top-5 z-10 px-4">
       <div className="flex items-center justify-between gap-1 bg-[#F5F5F5] rounded-lg p-4 overflow-auto">

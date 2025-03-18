@@ -31,7 +31,7 @@ export const loginUser = async (email: string, password: string) => {
   });
 
   if (error) {
-    return error.message;
+    throw new Error();
   }
 
   if (user) {
@@ -41,7 +41,7 @@ export const loginUser = async (email: string, password: string) => {
       .eq('user_id', user.id)
       .single();
     if (error) {
-      return error.message;
+      throw new Error();
     }
     return data.username;
   }

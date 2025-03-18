@@ -28,11 +28,14 @@ export default function Login({ dialogRef }: Props) {
 
   const [error, setError] = useState(false);
   const setUser = useUserState((state) => state.setUser);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function request(data: ILogin) {
     try {
+      setIsLoading(true);
       const res = await loginUser(data.email, data.password);
       if (res) {
+        console.log(res);
         setError(false);
         setUser(res, data.email);
         toast.success('Успешно!');
@@ -42,7 +45,17 @@ export default function Login({ dialogRef }: Props) {
       }
     } catch {
       setError(true);
+    } finally {
+      setIsLoading(false);
     }
+  }
+
+  if (isLoading) {
+    return (
+      <div className="text-center min-h-[200px] mt-8">
+        <p>Загрузка...</p>
+      </div>
+    );
   }
 
   return (
@@ -107,7 +120,7 @@ export default function Login({ dialogRef }: Props) {
       <div>
         {error && (
           <p className="text-sm text-red-600 font-bold text-center">
-            Произошла ошибка, повторите попытку позже
+            Неверный логин или пароль
           </p>
         )}
       </div>

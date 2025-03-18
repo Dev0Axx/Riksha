@@ -5,7 +5,6 @@ export interface Good {
   img_url: string;
   description: string;
   sizes?: string[];
-  additionally?: Additionally[];
 }
 
 export interface Categories {
@@ -20,4 +19,9 @@ export interface Additionally {
   name: string;
   price: number;
   img_url: string;
+}
+
+export interface BasketGood extends Good {
+  quantity: number;
+  additionally: Additionally[];
 }

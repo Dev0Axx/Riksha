@@ -36,7 +36,7 @@ export default function Card({ good, categoryName }: GoodProps) {
           alt={good.name}
           className="select-none cursor-pointer"
           onClick={async () => {
-            await additionally();
+            additionally();
             if (dialogRef.current) dialogRef.current.showModal();
           }}
         />
@@ -64,7 +64,12 @@ export default function Card({ good, categoryName }: GoodProps) {
           <p className="descriptionList text-sm">{good.description}</p>
         )}
         <b className="sm:text-2xl">{good.price} ₽</b>
-        <AddGoodButton good={good} classes="sm:w-[60%] w-[100%]" />
+        <AddGoodButton
+          good={good}
+          classes="sm:w-[60%] w-[100%]"
+          dialogRef={dialogRef}
+          additionally={additionally}
+        />
       </div>
       <CardDialog
         dialogRef={dialogRef}

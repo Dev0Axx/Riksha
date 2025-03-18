@@ -1,5 +1,6 @@
 import { Container } from '../container';
 import Slider from 'rc-slider';
+import { memo } from 'react';
 import { IoIosSearch } from 'react-icons/io';
 
 type Props = {
@@ -9,7 +10,7 @@ type Props = {
   filterSetsByName: (searchString: string) => void;
 };
 
-export default function Filters({
+const Filters = memo(function Filters({
   priceRange,
   searchText,
   applyFilter,
@@ -82,4 +83,6 @@ export default function Filters({
       </div>
     </Container>
   );
-}
+});
+
+export default Filters;

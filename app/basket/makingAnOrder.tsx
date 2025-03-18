@@ -74,7 +74,8 @@ export default function Order() {
 
   return (
     <form onSubmit={handleSubmit(request)} className="flex flex-col gap-4">
-      <div className="bg-[#F5F5F5] p-8">
+      {/* Контактные данные */}
+      <article className="bg-[#F5F5F5] p-8">
         <h2 className="text-2xl font-bold mb-4">Контактные данные</h2>
         <label className="flex gap-4">
           <input
@@ -101,8 +102,9 @@ export default function Order() {
             })}
           />
         </label>
-      </div>
-      <div className="bg-[#F5F5F5] p-8 flex flex-col gap-4">
+      </article>
+      {/* Параметры доставки */}
+      <article className="bg-[#F5F5F5] p-8 flex flex-col gap-4">
         <h2 className="text-2xl font-bold mb-4">Параметры доставки</h2>
         <label className="flex gap-4">
           <input
@@ -152,7 +154,8 @@ export default function Order() {
             })}
           />
         </label>
-      </div>
+      </article>
+      {/* Параметры оплаты */}
       <fieldset className="bg-[#F5F5F5] p-8 text-[14px]">
         <h2 className="text-2xl font-bold mb-4">Параметры оплаты</h2>
         <div className="flex flex-wrap gap-4">
@@ -212,7 +215,7 @@ export default function Order() {
           </div>
         )}
       </fieldset>
-
+      {/* Последний шаг */}
       <fieldset className="bg-[#F5F5F5] p-8">
         <h2 className="text-2xl font-bold mb-4">Последний шаг</h2>
         <hr className="mb-4" />
