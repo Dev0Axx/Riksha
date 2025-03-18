@@ -73,16 +73,16 @@ export default function Order() {
   };
 
   return (
-    <form onSubmit={handleSubmit(request)} className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit(request)} className="flex flex-col gap-4 mt-4">
       {/* Контактные данные */}
-      <article className="bg-[#F5F5F5] p-8">
+      <article className="bg-accent rounded-2xl p-8">
         <h2 className="text-2xl font-bold mb-4">Контактные данные</h2>
         <label className="flex gap-4">
           <input
             type="text"
             placeholder="Ваше имя"
             className={cn(
-              'h-8 px-2 py-5 bg-white w-[100%]',
+              'h-8 px-2 py-5 bg-white w-[100%] rounded',
               errors?.name && 'border-2 border-red-600 rounded',
             )}
             {...register('name', {
@@ -93,7 +93,7 @@ export default function Order() {
             type="phone"
             placeholder="Телефон"
             className={cn(
-              'h-8 px-2 py-5 bg-white w-[100%]',
+              'h-8 px-2 py-5 bg-white w-[100%] rounded',
               errors?.phone && 'border-2 border-red-600 rounded',
             )}
             {...register('phone', {
@@ -104,14 +104,14 @@ export default function Order() {
         </label>
       </article>
       {/* Параметры доставки */}
-      <article className="bg-[#F5F5F5] p-8 flex flex-col gap-4">
+      <article className="bg-accent rounded-2xl p-8 flex flex-col gap-4">
         <h2 className="text-2xl font-bold mb-4">Параметры доставки</h2>
         <label className="flex gap-4">
           <input
             type="text"
             placeholder="Улица"
             className={cn(
-              'h-8 px-2 py-5 bg-white w-[100%]',
+              'h-8 px-2 py-5 bg-white w-[100%] rounded',
               errors?.street && 'border-2 border-red-600 rounded',
             )}
             {...register('street', {
@@ -122,7 +122,7 @@ export default function Order() {
             type="text"
             placeholder="Дом"
             className={cn(
-              'h-8 px-2 py-5 bg-white w-[100%]',
+              'h-8 px-2 py-5 bg-white w-[100%] rounded',
               errors?.house && 'border-2 border-red-600 rounded',
             )}
             {...register('house', {
@@ -135,7 +135,7 @@ export default function Order() {
             type="text"
             placeholder="Квартира"
             className={cn(
-              'h-8 px-2 py-5 bg-white w-[100%]',
+              'h-8 px-2 py-5 bg-white w-[100%] rounded',
               errors?.flat && 'border-2 border-red-600 rounded',
             )}
             {...register('flat', {
@@ -146,7 +146,7 @@ export default function Order() {
             type="text"
             placeholder="Подъезд/этаж/домофон"
             className={cn(
-              'h-8 px-2 py-5 bg-white w-[100%]',
+              'h-8 px-2 py-5 bg-white w-[100%] rounded',
               errors?.additionally && 'border-2 border-red-600 rounded',
             )}
             {...register('additionally', {
@@ -156,7 +156,7 @@ export default function Order() {
         </label>
       </article>
       {/* Параметры оплаты */}
-      <fieldset className="bg-[#F5F5F5] p-8 text-[14px]">
+      <fieldset className="bg-accent p-8 text-[14px] rounded-2xl">
         <h2 className="text-2xl font-bold mb-4">Параметры оплаты</h2>
         <div className="flex flex-wrap gap-4">
           <label className="flex gap-4 items-center">
@@ -196,11 +196,11 @@ export default function Order() {
         {paymentMethodValue === PaymentMethod.cash && (
           <div className="mt-4 flex sm:flex-row flex-col sm:items-center gap-4">
             <div className="flex gap-2 items-center">
-              <label htmlFor="changeAmount">Подготовить сдачу с:</label>
+              <label htmlFor="changeAmount">Подготовить сдачу с</label>
               <input
                 type="number"
                 id="changeAmount"
-                className="h-8 px-2 py-5 bg-white w-32"
+                className="h-8 px-2 py-1 bg-white w-32 rounded"
                 {...register('changeAmount')}
               />
             </div>
@@ -216,7 +216,7 @@ export default function Order() {
         )}
       </fieldset>
       {/* Последний шаг */}
-      <fieldset className="bg-[#F5F5F5] p-8">
+      <fieldset className="bg-accent p-8 rounded-2xl">
         <h2 className="text-2xl font-bold mb-4">Последний шаг</h2>
         <hr className="mb-4" />
         <div className="flex gap-4 flex-wrap">
@@ -226,7 +226,7 @@ export default function Order() {
               <button
                 type="button"
                 onClick={decreasePersonCount}
-                className="px-3 py-1 bg-gray-200 rounded-l cursor-pointer"
+                className="px-3 py-1 rounded-l cursor-pointer bg-primary text-white"
               >
                 -
               </button>
@@ -234,7 +234,7 @@ export default function Order() {
               <button
                 type="button"
                 onClick={increasePersonCount}
-                className="px-3 py-1 bg-gray-200 rounded-r cursor-pointer"
+                className="px-3 py-1 rounded-r cursor-pointer bg-primary text-white"
               >
                 +
               </button>
@@ -251,7 +251,7 @@ export default function Order() {
               <button
                 type="button"
                 onClick={decreaseSticksCount}
-                className="px-3 py-1 bg-gray-200 rounded-l cursor-pointer"
+                className="px-3 py-1 bg-primary text-white rounded-l cursor-pointer"
               >
                 -
               </button>
@@ -259,7 +259,7 @@ export default function Order() {
               <button
                 type="button"
                 onClick={increaseSticksCount}
-                className="px-3 py-1 bg-gray-200 rounded-r cursor-pointer"
+                className="px-3 py-1 bg-gray-200 bg-primary text-white rounded-r cursor-pointer"
               >
                 +
               </button>
@@ -271,37 +271,17 @@ export default function Order() {
             </div>
           </div>
         </div>
-        <hr className="mb-4" />
-        <div className="mb-4 flex justify-between">
-          <span>Сумма заказа</span>
-          <span className="font-bold text-[20px]">{totalPrice} ₽</span>
-        </div>
-
-        <div className="mb-4 flex justify-between">
-          <span>Стоимость доставки</span>
-          <span className="font-bold text-[20px]">
-            {totalPrice >= 600 ? 0 : 400} ₽
-          </span>
-        </div>
-        <hr className="mb-4 border-red-600" />
-        <div className="mb-4 flex justify-between">
-          <span>Итоговая сумма заказа</span>
-          <span className="font-bold text-[20px]">
-            {totalPrice >= 600 ? totalPrice : totalPrice + 400} ₽
-          </span>
-        </div>
-
         <div className="mb-4">
           <textarea
             placeholder="Комментарий к заказу"
-            className="w-full h-24 p-2 bg-white"
+            className="w-full h-24 p-2 bg-white rounded resize-none"
             {...register('comment')}
           />
         </div>
 
-        <Button disabled={!isValid} type="submit" className="bg-orange-500">
+        {/* <Button disabled={!isValid} type="submit" className="bg-orange-500">
           Подтвердить заказ
-        </Button>
+        </Button> */}
       </fieldset>
     </form>
   );
