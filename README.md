@@ -1,9 +1,13 @@
 Ссылка на проект - https://riksha-three.vercel.app/
+Link to the project - https://riksha-three.vercel.app/
 
 Для запуска клиента склонировать репозиторий. В папке с проектом - npm run dev.
+To run the client, clone the repository. In the project folder - npm run dev.
 
 Используемый сервер - supabase.
+The server used is supabase.
 Структура базы данных:
+Database structure:
 [
 {
 "table_name": "additionally",
