@@ -30,9 +30,7 @@ export default function NotFound() {
           </div>
         </div>
         <Button
-          variant="card"
-          size="card"
-          className="bg-[url('/bt_bg.svg')]"
+          className="bg-[url('/bt_bg.svg')] w-[50%] rounded"
           onClick={() => {
             router.push('/');
           }}

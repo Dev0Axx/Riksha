@@ -32,7 +32,7 @@ export default function Register({ dialogRef }: Props) {
   async function request(data: IRegister) {
     try {
       setLoading(true);
-      const res = await signupUser(data.email, data.password, data.username);
+      await signupUser(data.email, data.password, data.username);
       setError(false);
       if (dialogRef.current) {
         dialogRef.current.close();

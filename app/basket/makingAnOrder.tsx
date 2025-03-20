@@ -1,10 +1,8 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { useBasket } from '@/store/basket';
 
 enum PaymentMethod {
   cash = 'Наличными при получении',
@@ -31,13 +29,12 @@ export default function Order() {
   const [personCount, setPersonCount] = useState(1);
   const [sticksCount, setSticksCount] = useState(1);
   const [isChangeNeeded, setIsChangeNeeded] = useState(false);
-  const totalPrice = useBasket((state) => state.totalPrice());
 
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<Order>({
     mode: 'onBlur',
     defaultValues: {
