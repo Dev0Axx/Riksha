@@ -4,6 +4,8 @@
 
 Используемый сервер - supabase / The server used is supabase
 
+Используемы технологии/Technologies used - Next.js, Shadcn, Zustand
+
 Структура базы данных: / Database structure:
 <br>
 ```json
