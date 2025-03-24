@@ -28,7 +28,7 @@ export default function CardDialog({
   return (
     <dialog
       ref={dialogRef}
-      className="m-auto outline-none rounded-2xl border-2 border-primary w-max"
+      className="m-auto outline-none rounded-2xl border-2 border-primary"
     >
       <div className="flex xl:flex-row flex-col">
         <div className="flex items-center justify-center xl:w-[50%]">

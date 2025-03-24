@@ -46,11 +46,12 @@ export default function Features() {
     <div className="relative">
       {/* Фоновое изображение */}
       <Image
-        src="/bg_clock.png"
+        src="/bg_clock.webp"
         alt="Фоновое изображение"
         width={330}
         height={521}
         className="absolute -bottom-10 left-0 -z-10 hidden md:block select-none"
+        priority
       />
 
       {/* Контейнер для преимуществ */}

@@ -45,6 +45,7 @@ export default function Additionally({
     if (dialogRef.current) {
       dialogRef.current.close();
     }
+    setSelectedItems([]);
   };
 
   return (
@@ -66,7 +67,7 @@ export default function Additionally({
               className={cn(
                 'sm:w-[32%] px-2 py-4 bg-white rounded-4xl flex sm:flex-col justify-between items-center text-center gap-2 cursor-pointer relative',
                 selectedItems.some((selected) => selected.id === item.id)
-                  ? 'border-2 border-primary'
+                  ? 'border-1 border-primary'
                   : '',
               )}
               onClick={() => handleItemClick(item)}
