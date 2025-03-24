@@ -65,7 +65,6 @@ export default function Card({ good, categoryName }: GoodProps) {
         )}
         <b className="sm:text-2xl">{good.price} ₽</b>
         <AddGoodButton
-          good={good}
           classes="sm:w-[60%] w-[100%]"
           dialogRef={dialogRef}
           additionally={additionally}

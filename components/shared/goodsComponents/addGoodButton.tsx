@@ -1,19 +1,17 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Good } from '@/interfaces';
 import { cn } from '@/lib/utils';
 import dynamic from 'next/dynamic';
 import { RefObject } from 'react';
 
 type Props = {
-  good: Good;
   dialogRef: RefObject<HTMLDialogElement | null>;
   classes?: string;
   additionally: () => void;
 };
 
-function AddGoodButton({ good, classes, dialogRef, additionally }: Props) {
+function AddGoodButton({ classes, dialogRef, additionally }: Props) {
   return (
     <>
       {/* {totalItemsById > 0 ? (

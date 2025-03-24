@@ -8,7 +8,6 @@ import { cn } from '@/lib/utils';
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { Button } from '@/components/ui/button';
 import { useBasket } from '@/store/basket';
-import { Skeleton } from '@/components/ui/skeleton';
 
 type Props = {
   item: BasketGood;
