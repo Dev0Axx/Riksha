@@ -29,7 +29,15 @@ export const getGoods = async (): Promise<Categories[]> => {
     ? data.filter((category) => category.goods && category.goods.length > 0)
     : [];
 
-  return filteredCategories as Categories[];
+  const categoriesWithGoods = filteredCategories.map((category) => ({
+    ...category,
+    goods: category.goods.map((good) => ({
+      ...good,
+      categoryName: category.name,
+    })),
+  }));
+
+  return categoriesWithGoods as Categories[];
 };
 
 export const getAdditionally = async (

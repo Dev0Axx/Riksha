@@ -5,6 +5,7 @@ export interface Good {
   img_url: string;
   description: string;
   sizes?: string[];
+  categoryName: string;
 }
 
 export interface Categories {
@@ -22,6 +23,7 @@ export interface Additionally {
 }
 
 export interface BasketGood extends Good {
+  basketItemId: string;
   quantity: number;
-  additionally: Additionally[];
+  additionally?: Additionally[];
 }

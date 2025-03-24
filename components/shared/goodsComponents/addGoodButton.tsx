@@ -3,7 +3,6 @@
 import { Button } from '@/components/ui/button';
 import { Good } from '@/interfaces';
 import { cn } from '@/lib/utils';
-import { useBasket } from '@/store/basket';
 import dynamic from 'next/dynamic';
 import { RefObject } from 'react';
 
@@ -15,12 +14,9 @@ type Props = {
 };
 
 function AddGoodButton({ good, classes, dialogRef, additionally }: Props) {
-  const { removeLastGoodById } = useBasket();
-  const totalItemsById = useBasket((state) => state.totalItemsById(good.id));
-
   return (
     <>
-      {totalItemsById > 0 ? (
+      {/* {totalItemsById > 0 ? (
         <div className="flex items-center space-x-2">
           <button
             onClick={() => {
@@ -43,19 +39,19 @@ function AddGoodButton({ good, classes, dialogRef, additionally }: Props) {
             +
           </button>
         </div>
-      ) : (
-        <Button
-          className={cn("bg-[url('/bt_bg.svg')] rounded", classes)}
-          onClick={() => {
-            additionally();
-            if (dialogRef.current) {
-              dialogRef.current.showModal();
-            }
-          }}
-        >
-          Заказать
-        </Button>
-      )}
+      ) : ( */}
+      <Button
+        className={cn("bg-[url('/bt_bg.svg')] rounded", classes)}
+        onClick={() => {
+          additionally();
+          if (dialogRef.current) {
+            dialogRef.current.showModal();
+          }
+        }}
+      >
+        Заказать
+      </Button>
+      {/* )} */}
     </>
   );
 }
