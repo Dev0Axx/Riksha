@@ -40,8 +40,8 @@ function AddGoodButton({ classes, dialogRef, additionally }: Props) {
       ) : ( */}
       <Button
         className={cn("bg-[url('/bt_bg.svg')] rounded", classes)}
-        onClick={() => {
-          additionally();
+        onClick={async () => {
+          await additionally();
           if (dialogRef.current) {
             dialogRef.current.showModal();
           }
