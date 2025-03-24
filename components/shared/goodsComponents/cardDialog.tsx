@@ -28,17 +28,17 @@ export default function CardDialog({
   return (
     <dialog
       ref={dialogRef}
-      className="m-auto outline-none rounded-2xl border-2 border-primary"
+      className="m-auto outline-none rounded border-2 border-primary"
     >
-      <div className="flex xl:flex-row flex-col">
-        <div className="flex items-center justify-center xl:w-[50%]">
+      <div className="flex flex-col">
+        <div className="flex items-center justify-center ">
           <img
             src={good.img_url}
             alt={good.name}
             className="h-[100%] w-[100%] max-w-[1000px]"
           />
         </div>
-        <div className="bg-[rgb(244,241,238)] xl:px-12 xl:py-4 p-4 xl:w-[50%] flex flex-col justify-between">
+        <div className="bg-[rgb(244,241,238)] xl:px-12 xl:py-4 p-4  flex flex-col justify-between">
           <div>
             <h1 className="text-4xl font-bold">{good.name}</h1>
             <p className="text-sm opacity-50 mt-2">{good.description}</p>

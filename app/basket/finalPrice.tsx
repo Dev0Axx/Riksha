@@ -1,6 +1,9 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useBasket } from '@/store/basket';
+import { useState } from 'react';
 
 type Props = {
   classes: string;
@@ -9,6 +12,8 @@ type Props = {
 export default function FinalPrice({ classes }: Props) {
   const totalPrice = useBasket((state) => state.totalPrice());
   const totalItems = useBasket((state) => state.totalItems());
+  const [isPromoCode, setIsPromoCode] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   return (
     <div className={cn(classes, 'bg-accent h-max p-8 rounded-2xl')}>
@@ -43,7 +48,40 @@ export default function FinalPrice({ classes }: Props) {
         </div>
       </div>
       <hr className="my-6" />
-      <p className=" opacity-50 cursor-pointer">У меня есть промокод</p>
+      {!isPromoCode && (
+        <p
+          className=" opacity-50 cursor-pointer"
+          onClick={() => {
+            setIsPromoCode(true);
+          }}
+        >
+          У меня есть промокод
+        </p>
+      )}
+      {isPromoCode && (
+        <div>
+          <input
+            placeholder="Введите промокод"
+            className="p-2 bg-white rounded w-[100%]"
+          />
+          <div className="ml-1 mt-1">
+            <p
+              className="text-primary cursor-pointer"
+              onClick={() => {
+                setIsError(true);
+              }}
+            >
+              Применить
+            </p>
+            {isError && (
+              <p className="text-red-600 font-medium">
+                Промокод не действителен!
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
       <Button className="w-[100%] mt-6">Перейти к оплате</Button>
     </div>
   );

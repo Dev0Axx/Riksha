@@ -14,7 +14,6 @@ export default function Footer() {
               width={0}
               height={0}
               className="xl:w-[134px] w-[98px] h-auto "
-              priority
             ></Image>
           </div>
           <nav className="flex gap-8 max-[350px]:text-xs">

@@ -27,7 +27,7 @@ interface Order {
 
 export default function Order() {
   const [personCount, setPersonCount] = useState(1);
-  const [sticksCount, setSticksCount] = useState(1);
+  const [sticksCount, setSticksCount] = useState(0);
   const [isChangeNeeded, setIsChangeNeeded] = useState(false);
 
   const {
@@ -58,7 +58,9 @@ export default function Order() {
   };
 
   const increasePersonCount = () => {
-    setPersonCount(personCount + 1);
+    if (personCount < 10) {
+      setPersonCount(personCount + 1);
+    }
   };
 
   const decreaseSticksCount = () => {
@@ -66,7 +68,9 @@ export default function Order() {
   };
 
   const increaseSticksCount = () => {
-    setSticksCount(sticksCount + 1);
+    if (sticksCount < 10) {
+      setSticksCount(sticksCount + 1);
+    }
   };
 
   return (
@@ -275,10 +279,6 @@ export default function Order() {
             {...register('comment')}
           />
         </div>
-
-        {/* <Button disabled={!isValid} type="submit" className="bg-orange-500">
-          Подтвердить заказ
-        </Button> */}
       </fieldset>
     </form>
   );
