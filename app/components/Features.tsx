@@ -44,7 +44,6 @@ const advantagesData = [
 export default function Features() {
   return (
     <div className="relative">
-      {/* Фоновое изображение */}
       <Image
         src="/bg_clock.webp"
         alt="Фоновое изображение"
@@ -54,32 +53,35 @@ export default function Features() {
         priority
       />
 
-      {/* Контейнер для преимуществ */}
-      <Container className="md:mt-48 mt-12 px-4">
-        <div className="flex justify-between gap-4 flex-col sm:flex-row">
+      <Container className="md:mt-24 mt-12 px-4">
+        <div className="flex justify-between flex-wrap sm:gap-[1%] gap-2">
           {advantagesData.map((advantage) => (
-            <div key={advantage.name} className="flex flex-col items-center">
-              {/* Блок с изображениями */}
-              <div className="flex flex-col items-center ml-3 mr-1 h-[130px]">
+            <div
+              key={advantage.name}
+              className="flex flex-col items-center max-sm:w-[45%] w-[24%]"
+            >
+              <div className="flex flex-col items-center">
                 <Image
                   src={advantage.text}
                   alt={advantage.name}
                   width={138}
                   height={59}
+                  className="max-sm:w-[95px] h-auto"
                 />
                 <Image
                   src={advantage.img}
                   alt={advantage.name}
                   width={0}
                   height={0}
-                  className="w-max h-auto"
+                  className="sm:w-max w-[70px] h-auto"
                 />
               </div>
 
-              {/* Текстовый блок */}
               <div className="text-center">
-                <b className="text-lg font-bold">{advantage.title}</b>
-                <p className="text-sm text-gray-600">{advantage.description}</p>
+                <b className="sm:text-lg font-bold">{advantage.title}</b>
+                <p className="sm:text-sm text-xs text-gray-600">
+                  {advantage.description}
+                </p>
               </div>
             </div>
           ))}

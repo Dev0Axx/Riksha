@@ -40,8 +40,8 @@ const Filters = memo(function Filters({
   };
 
   return (
-    <Container className="p-4 flex sm:flex-row flex-col gap-4 justify-between">
-      <div className="flex sm:flex-col flex-row items-center gap-4">
+    <Container className="p-4 flex flex-col gap-4 justify-between">
+      <div className="flex items-center gap-4">
         <div className="flex sm:gap-4 gap-1">
           <input
             type="number"
@@ -68,7 +68,7 @@ const Filters = memo(function Filters({
           value={priceRange}
           onChangeComplete={handleSliderAfterChange}
           onChange={handleSliderChange}
-          className="max-w-[100%]"
+          className="max-w-[250px]"
         />
       </div>
       <div className="w-[100%] relative">

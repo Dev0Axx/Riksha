@@ -39,7 +39,7 @@ export default function GoodsContainer({ categories }: Props) {
   }, []);
 
   return (
-    <div className="bg-[rgb(251,251,251)] px-4 mt-12">
+    <div className="bg-[rgb(251,251,251)] px-4 sm:mt-24 mt-12">
       <Filters
         priceRange={priceRange}
         searchText={searchText}
