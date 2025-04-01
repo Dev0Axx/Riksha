@@ -1,19 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Good } from '@/interfaces';
 
 type Props = {
   good: Good;
+  setSize: (size: string) => void;
+  selectedSize: string;
 };
 
-export default function GoodSize({ good }: Props) {
-  const [selectedSize, setSelectedSize] = useState(good?.sizes?.[0] || '');
-
+export default function GoodSize({ good, setSize, selectedSize }: Props) {
   useEffect(() => {
     if (good?.sizes?.[0]) {
-      setSelectedSize(good.sizes[0]);
+      setSize(good.sizes[0]);
     }
   }, [good]);
 
@@ -28,7 +28,7 @@ export default function GoodSize({ good }: Props) {
           {good.sizes.map((size) => (
             <button
               key={size}
-              onClick={() => setSelectedSize(size)}
+              onClick={() => setSize(size)}
               className={cn(
                 'sm:px-16 px-12 max-[460px]:px-6 py-2 rounded-4xl transition-all duration-300 cursor-pointer sm:text-base text-[12px] outline-none',
                 selectedSize === size && 'bg-white',

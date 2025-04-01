@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 interface StateCategory {
   goods: BasketGood[];
-  addGood: (good: Good, additionally?: Additionally[]) => string;
+  addGood: (good: Good, additionally?: Additionally[], size?: string) => string;
   updateGood: (basketItemId: string, updates: Partial<BasketGood>) => void;
   increaseQuantity: (basketItemId: string) => void;
   decreaseQuantity: (basketItemId: string) => void;
@@ -18,13 +18,18 @@ export const useBasket = create<StateCategory>()(
     (set, get) => ({
       goods: [],
       // Добавление товара в корзину с генерацией уникального ID
-      addGood: (good: Good, additionally: Additionally[] = []) => {
+      addGood: (
+        good: Good,
+        additionally: Additionally[] = [],
+        size: string = '',
+      ) => {
         const basketItemId = uuidv4();
         const newItem: BasketGood = {
           ...good,
           basketItemId,
           quantity: 1,
           additionally,
+          size: size,
         };
 
         set((state) => ({

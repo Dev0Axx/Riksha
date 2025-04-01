@@ -26,4 +26,5 @@ export interface BasketGood extends Good {
   basketItemId: string;
   quantity: number;
   additionally?: Additionally[];
+  size?: string;
 }

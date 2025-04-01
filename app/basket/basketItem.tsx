@@ -76,6 +76,7 @@ export default function BasketItem({ item }: BasketItemProps) {
           <span className="font-medium whitespace-nowrap">{totalPrice}₽</span>
         </div>
       </div>
+      {item.size && <p className="opacity-50">Размер: {item.size}</p>}
       <div className="mt-2 flex">
         <span
           className="text-primary font-medium cursor-pointer"

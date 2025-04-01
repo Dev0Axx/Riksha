@@ -1,7 +1,7 @@
 'use client';
 
 /* eslint-disable @next/next/no-img-element */
-import { RefObject } from 'react';
+import { RefObject, useState } from 'react';
 import { Good, Additionally as IAdditionally } from '@/interfaces';
 import { IoCloseOutline } from 'react-icons/io5';
 import Additionally from './additionally';
@@ -20,15 +20,19 @@ export default function CardDialog({
   additionallyItems,
 }: Props) {
   const { addGood } = useBasket();
+  const [selectedSize, setSelectedSize] = useState(good?.sizes?.[0] || '');
 
-  function addGoodToBasket(good: Good, additionally: IAdditionally[]) {
-    addGood(good, additionally);
+  function setSize(size: string) {
+    setSelectedSize(size);
   }
 
+  function addGoodToBasket(good: Good, additionally: IAdditionally[]) {
+    addGood(good, additionally, selectedSize);
+  }
   return (
     <dialog
       ref={dialogRef}
-      className="m-auto outline-none rounded border-2 border-primary"
+      className="m-auto outline-none rounded border-2 border-primary "
     >
       <div className="flex flex-col max-w-[700px]">
         <div className="flex items-center justify-center">
@@ -43,7 +47,7 @@ export default function CardDialog({
             <h1 className="text-4xl font-bold">{good.name}</h1>
             <p className="text-sm opacity-50 mt-2">{good.description}</p>
           </div>
-          <GoodSize good={good} />
+          <GoodSize good={good} setSize={setSize} selectedSize={selectedSize} />
           <Additionally
             additionallyItems={additionallyItems}
             good={good}
