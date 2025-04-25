@@ -8,6 +8,8 @@ type Props = {
   searchText: string;
   applyFilter: (range: number[]) => void;
   filterSetsByName: (searchString: string) => void;
+  onSort: (direction: 'asc' | 'desc' | null) => void;
+  sortDirection: 'asc' | 'desc' | null;
 };
 
 const Filters = memo(function Filters({
@@ -15,6 +17,8 @@ const Filters = memo(function Filters({
   searchText,
   applyFilter,
   filterSetsByName,
+  onSort,
+  sortDirection,
 }: Props) {
   const handleSliderChange = (value: number | number[]) => {
     if (Array.isArray(value)) {
@@ -37,6 +41,15 @@ const Filters = memo(function Filters({
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     filterSetsByName(e.target.value);
+  };
+
+  const handleSortClick = (direction: 'asc' | 'desc') => {
+    // Если текущее направление совпадает с кликнутым, сбрасываем сортировку
+    if (sortDirection === direction) {
+      onSort(null);
+    } else {
+      onSort(direction);
+    }
   };
 
   return (
@@ -80,6 +93,27 @@ const Filters = memo(function Filters({
           className="border-2 rounded-2xl border-primary py-2 px-6 w-[100%]"
         />
         <IoIosSearch size={20} className="absolute top-3 left-1" />
+      </div>
+      <div className="flex gap-4 text-2xl">
+        <p>Сортировать по цене</p>
+        <p
+          className={`cursor-pointer duration-110 hover:scale-105 ${
+            sortDirection === 'asc' ? 'text-primary font-bold' : 'text-gray-500'
+          }`}
+          onClick={() => handleSortClick('asc')}
+        >
+          ↑ вверх
+        </p>
+        <p
+          className={`cursor-pointer duration-110 hover:scale-105 ${
+            sortDirection === 'desc'
+              ? 'text-primary font-bold'
+              : 'text-gray-500'
+          }`}
+          onClick={() => handleSortClick('desc')}
+        >
+          ↓ вниз
+        </p>
       </div>
     </Container>
   );

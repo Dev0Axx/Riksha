@@ -18,7 +18,6 @@ export default function Card({ good, categoryName }: GoodProps) {
 
   const dialogRef = useRef<HTMLDialogElement | null>(null);
 
-  //состояние доп опций для товара
   const [additionallyItems, setAdditionallyItems] = useState<
     Additionally[] | null
   >(null);

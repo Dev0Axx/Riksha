@@ -16,11 +16,7 @@ export default function Footer() {
               className="xl:w-[134px] w-[98px] h-auto "
             ></Image>
           </div>
-          <nav className="flex gap-8 max-[350px]:text-xs">
-            <Link href="">О нас</Link>
-            <Link href="">Доставка и оплата</Link>
-            <Link href="">Контакты</Link>
-          </nav>
+
           <address className="text-right md:block hidden">
             <p className="text-2xl">+7 (495) 617-14-24</p>
             <p>c 10:00 до 23:00</p>

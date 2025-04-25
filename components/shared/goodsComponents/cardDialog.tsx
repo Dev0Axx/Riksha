@@ -7,6 +7,9 @@ import { IoCloseOutline } from 'react-icons/io5';
 import Additionally from './additionally';
 import GoodSize from './goodSize';
 import { useBasket } from '@/store/basket';
+import { AiOutlineLike } from 'react-icons/ai';
+import { AiOutlineDislike } from 'react-icons/ai';
+import { likeProduct, dislikeProduct } from '@/dataBase/goods';
 
 type Props = {
   good: Good;
@@ -46,6 +49,26 @@ export default function CardDialog({
           <div>
             <h1 className="text-4xl font-bold">{good.name}</h1>
             <p className="text-sm opacity-50 mt-2">{good.description}</p>
+            <div className="flex gap-8 mt-4">
+              <p className="flex gap-2 items-center text-primary">
+                <AiOutlineLike
+                  size={30}
+                  className="cursor-pointer"
+                  onClick={() => likeProduct(good.id)}
+                />
+                {good.likes}
+              </p>
+              <p className="flex gap-2 items-center text-primary">
+                <AiOutlineDislike
+                  size={30}
+                  className="cursor-pointer"
+                  onClick={(e) => {
+                    dislikeProduct(good.id);
+                  }}
+                />
+                {good.dislikes}
+              </p>
+            </div>
           </div>
           <GoodSize good={good} setSize={setSize} selectedSize={selectedSize} />
           <Additionally

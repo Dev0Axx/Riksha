@@ -44,19 +44,10 @@ export default function Navigation() {
       <nav className="hidden sm:block">
         <ul className="[&>li]:list:none flex justify-between gap-6 ">
           <li>
-            <Link href={''}>О нас</Link>
+            <Link href={'/'}>Главная</Link>
           </li>
           <li>
-            <Link href={''}>Доставка и оплата</Link>
-          </li>
-          <li>
-            <Link href={''}>Контакты</Link>
-          </li>
-          <li>
-            <Link href={''}>Бонусы</Link>
-          </li>
-          <li>
-            <Link href={''}>Вакансии</Link>
+            <Link href={'/basket'}>Корзина</Link>
           </li>
         </ul>
       </nav>

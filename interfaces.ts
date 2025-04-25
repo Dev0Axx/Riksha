@@ -6,6 +6,8 @@ export interface Good {
   description: string;
   sizes?: string[];
   categoryName: string;
+  likes: number;
+  dislikes: number;
 }
 
 export interface Categories {
