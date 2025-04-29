@@ -62,7 +62,7 @@ export default function CardDialog({
                 <AiOutlineDislike
                   size={30}
                   className="cursor-pointer"
-                  onClick={(e) => {
+                  onClick={() => {
                     dislikeProduct(good.id);
                   }}
                 />
