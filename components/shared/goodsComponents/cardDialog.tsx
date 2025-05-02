@@ -56,7 +56,10 @@ export default function CardDialog({
                 <AiOutlineLike
                   size={30}
                   className="cursor-pointer"
-                  onClick={() => likeProduct(good.id)}
+                  onClick={() => {
+                    likeProduct(good.id);
+                    dialogRef.current?.close();
+                  }}
                 />
                 {good.likes}
               </p>
@@ -66,6 +69,7 @@ export default function CardDialog({
                   className="cursor-pointer"
                   onClick={() => {
                     dislikeProduct(good.id);
+                    dialogRef.current?.close();
                   }}
                 />
                 {good.dislikes}
