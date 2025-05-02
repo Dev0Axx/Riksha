@@ -32,6 +32,8 @@ export default function CardDialog({
   function addGoodToBasket(good: Good, additionally: IAdditionally[]) {
     addGood(good, additionally, selectedSize);
   }
+  console.log(good);
+
   return (
     <dialog
       ref={dialogRef}
