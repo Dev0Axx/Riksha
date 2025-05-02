@@ -11,7 +11,7 @@ import { Categories as ICategories } from '@/interfaces';
 
 export default async function Home() {
   const res: ICategories[] = await getGoods();
-
+  console.log(res);
   return (
     <>
       {/* Кнопка корзины для устройств с меньшим экраном */}
