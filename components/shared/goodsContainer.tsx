@@ -30,7 +30,6 @@ export default function GoodsContainer({ categories }: Props) {
             product.name.toLowerCase().includes(searchText.toLowerCase()),
         );
 
-        // Сортируем товары если выбран тип сортировки
         if (sortDirection) {
           filteredGoods = [...filteredGoods].sort((a, b) => {
             return sortDirection === 'asc'
